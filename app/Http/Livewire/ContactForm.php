@@ -33,19 +33,15 @@ class ContactForm extends Component
 
     public function submitForm()
     {
-        // request()->validate([
-        //     'name' => 'required',
-        //     'email' => 'required|email',
-        //     'phone' => 'required',
-        //     'message' => 'required'
-        // ]);
-        $contact['name'] = $this->name;
-        $contact['email'] = $this->email;
-        $contact['phone'] = $this->phone;
-        $contact['message'] = $this->message;
+        $contact = $this->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'message' => 'required'
+        ]);
 
         Mail::to('ifilmtech@gmail.com')->send(new ContactFormMail($contact));
-        
+
         $this->successMessage = 'We received your maessage successfully and will get back to you shortly!';
         $this->resetForm();
     }
