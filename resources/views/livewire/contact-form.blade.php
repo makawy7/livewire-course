@@ -55,10 +55,11 @@
         </div>
         <div class="bg-white py-16 px-4 sm:px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
             <div class="max-w-lg mx-auto lg:max-w-none">
-                <form action="/contact" method="POST" class="grid grid-cols-1 row-gap-6">
+                <form wire:submit.prevent="submitForm" action="/contact" method="POST"
+                    class="grid grid-cols-1 row-gap-6">
                     @csrf
 
-                    @if (session()->has('success'))
+                    @if ($successMessage)
                         <div class="rounded-md bg-green-50 p-4 mt-8">
                             <div class="flex">
                                 <div class="flex-shrink-0">
@@ -70,12 +71,12 @@
                                 </div>
                                 <div class="ml-3">
                                     <p class="text-sm leading-5 font-medium text-green-800">
-                                        {{ session('success') }}
+                                        {{ $successMessage }}
                                     </p>
                                 </div>
                                 <div class="ml-auto pl-3">
                                     <div class="-mx-1.5 -my-1.5">
-                                        <button type="button"
+                                        <button wire:click="$set('successMessage', null)" type="button"
                                             class="inline-flex rounded-md p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:bg-green-100 transition ease-in-out duration-150"
                                             aria-label="Dismiss">
                                             <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -93,7 +94,7 @@
                     <div>
                         <label for="name" class="sr-only">Full name</label>
                         <div class="relative rounded-md shadow-sm">
-                            <input id="name" name="name" value="{{ old('name') }}"
+                            <input wire:model.defer="name" id="name" name="name" value="{{ old('name') }}"
                                 class="@error('name')border border-red-500 @enderror form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150"
                                 placeholder="Full name">
                         </div>
@@ -105,7 +106,8 @@
                     <div>
                         <label for="email" class="sr-only">Email</label>
                         <div class="relative rounded-md shadow-sm">
-                            <input id="email" type="text" name="email" value="{{ old('email') }}"
+                            <input wire:model.defer="email" id="email" type="text" name="email"
+                                value="{{ old('email') }}"
                                 class="@error('email')border border-red-500 @enderror form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150"
                                 placeholder="Email">
                         </div>
@@ -116,7 +118,7 @@
                     <div>
                         <label for="phone" class="sr-only">Phone</label>
                         <div class="relative rounded-md shadow-sm">
-                            <input id="phone" name="phone" value="{{ old('phone') }}"
+                            <input wire:model.defer="phone" id="phone" name="phone" value="{{ old('phone') }}"
                                 class="@error('phone')border border-red-500 @enderror form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150"
                                 placeholder="Phone">
                         </div>
@@ -127,7 +129,7 @@
                     <div>
                         <label for="message" class="sr-only">Message</label>
                         <div class="relative rounded-md shadow-sm">
-                            <textarea id="message" rows="4" name="message"
+                            <textarea wire:model.defer="message" id="message" rows="4" name="message"
                                 class="@error('message')border border-red-500 @enderror form-input block w-full py-3 px-4 placeholder-gray-500 transition ease-in-out duration-150"
                                 placeholder="Message">{{ old('message') }}</textarea>
                         </div>
