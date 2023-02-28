@@ -13,6 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::get('/contact', function () {
+    return view('contact-us');
+});
+
+Route::post('/contact', function () {
+    request()->validate([
+        'name' => 'required',
+        'email' => 'required|email',
+        'phone' => 'required',
+        'message' => 'required'
+    ]);
+
+    return back()->with('success', 'We received your maessage successfully and will get back to you shortly!');
 });
