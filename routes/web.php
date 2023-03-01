@@ -18,8 +18,3 @@ use Illuminate\Support\Facades\Route;
 Route::get('/contact', function () {
     return view('contact-us');
 });
-
-Route::post('/contact', function () {
-
-    // return back()->with('success', 'We received your maessage successfully and will get back to you shortly!');
-});

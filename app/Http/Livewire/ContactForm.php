@@ -13,32 +13,27 @@ class ContactForm extends Component
     public $phone;
     public $message;
     public $successMessage;
+
+    protected $rules = [
+        'name' => 'required',
+        'email' => 'required|email',
+        'phone' => 'required',
+        'message' => 'required'
+    ];
+
     public function render()
     {
         return view('livewire.contact-form');
     }
 
-    public function validateName()
+    public function updated($propertyName)
     {
-    }
-    public function validateEmail()
-    {
-    }
-    public function validatePhone()
-    {
-    }
-    public function validatMessage()
-    {
+        $this->validateOnly($propertyName);
     }
 
     public function submitForm()
     {
-        $contact = $this->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'message' => 'required'
-        ]);
+        $contact = $this->validate();
 
         Mail::to('ifilmtech@gmail.com')->send(new ContactFormMail($contact));
 
