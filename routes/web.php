@@ -21,3 +21,6 @@ Route::get('/contact', function () {
 Route::get('/music', function () {
     return view('music');
 });
+Route::get('/users', function () {
+    return view('users-table');
+});
