@@ -8,12 +8,10 @@ use Illuminate\View\Component;
 
 class SortIcon extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public $sortAsc;
+    public function __construct($sortAsc)
     {
-        //
+        $this->sortAsc = $sortAsc;
     }
 
     /**
