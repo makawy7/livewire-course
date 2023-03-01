@@ -37,14 +37,18 @@
                                 <div class="flex items-center">
                                     <button wire:click="sort('name')"
                                         class="bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</button>
-
+                                    @if ($sortField === 'name')
+                                        <x-sort-icon :sortAsc="$sortAsc" />
+                                    @endif
                                 </div>
                             </th>
                             <th class="px-6 py-3 text-left">
                                 <div class="flex items-center">
                                     <button wire:click="sort('email')"
                                         class="bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Email</button>
-
+                                    @if ($sortField === 'email')
+                                        <x-sort-icon :sortAsc="$sortAsc" />
+                                    @endif
                                 </div>
                             </th>
                             <th
