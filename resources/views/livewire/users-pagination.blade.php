@@ -12,17 +12,14 @@
                                     clip-rule="evenodd"></path>
                             </svg>
                         </div>
-                        <input wire:model.debounce.200ms="search"
-                            id="search"
+                        <input wire:model.debounce.200ms="search" id="search"
                             class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:border-blue-300 focus:shadow-outline-blue sm:text-sm transition duration-150 ease-in-out"
                             placeholder="Search" type="search">
                     </div>
                 </div>
                 <div class="relative flex items-start">
                     <div class="flex items-center h-5">
-                        <input 
-                            wire:model="active"
-                            id="active" type="checkbox"
+                        <input wire:model="active" id="active" type="checkbox"
                             class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
                     </div>
                     <div class="ml-3 text-sm leading-5">
@@ -38,14 +35,14 @@
                         <tr>
                             <th class="px-6 py-3 text-left">
                                 <div class="flex items-center">
-                                    <button
+                                    <button wire:click="sort('name')"
                                         class="bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</button>
 
                                 </div>
                             </th>
                             <th class="px-6 py-3 text-left">
                                 <div class="flex items-center">
-                                    <button
+                                    <button wire:click="sort('email')"
                                         class="bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Email</button>
 
                                 </div>
