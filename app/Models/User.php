@@ -43,10 +43,12 @@ class User extends Authenticatable
     ];
 
 
-    public function scopeFilter($query, ?string $search)
+    public function scopeFilter($query, array $filters)
     {
-        $query->when($search ?? false, fn ($query, $search) =>
+        $query->when($filters['search'] ?? false, fn ($query, $search) =>
         $query->where('name', 'like', '%' . $search . '%')
-            ->orWhere('email', 'like', '%' . $search . '%'));
+            ->orWhere('email', 'like', '%' . $search . '%'))
+            ->when($filters['active'] ?? false, fn ($query, $active) =>
+            $query->where('active', $active));
     }
 }
