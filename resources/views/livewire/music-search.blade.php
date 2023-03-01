@@ -17,15 +17,15 @@
                     class="absolute z-50 bg-white border border-gray-300 w-full rounded-md mt-2 text-gray-700 text-sm divide-y divide-gray-200">
                     @forelse($results as $result)
                         <li>
-                            <a href="{{ $result['trackViewUrl'] }}"
+                            <a href="{{ $result['trackViewUrl'] ?? '#' }}"
                                 class="flex items-center px-4 py-4 hover:bg-gray-200 transition ease-in-out duration-150">
-                                <img src="{{ $result['artworkUrl60'] }}" alt="album art" class="w-10">
+                                <img src="{{ $result['artworkUrl60'] ?? '' }}" alt="album art" class="w-10">
                                 <div class="ml-4 leading-tight">
                                     <div class="font-semibold">
-                                        {{ $result['trackName'] }}
+                                        {{ $result['trackName'] ?? '' }}
                                     </div>
                                     <div class="text-gray-600">
-                                        {{ $result['artistName'] }}
+                                        {{ $result['artistName'] ?? '' }}
                                     </div>
                                 </div>
                             </a>
@@ -34,6 +34,7 @@
                         <li class="px-4 py-4">No results found for "{{ $search }}"</li>
                     @endforelse
                 </ul>
+
             @endif
 
         </div>

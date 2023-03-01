@@ -15,6 +15,7 @@ class MusicSearch extends Component
         if (strlen($this->search) > 2) {
             $response = Http::get('https://itunes.apple.com/search/?term=' . $this->search . '&limit=10');
             $this->results = $response['results'];
+
         }
     }
     public function render()
