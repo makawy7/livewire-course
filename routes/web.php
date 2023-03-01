@@ -18,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/contact', function () {
     return view('contact-us');
 });
+Route::get('/music', function () {
+    return view('music');
+});
