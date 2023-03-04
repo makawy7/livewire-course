@@ -19,7 +19,7 @@
                     <button type="button"
                         class="inline-flex rounded-md p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:bg-green-100 transition ease-in-out duration-150"
                         aria-label="Dismiss">
-                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <svg wire:click="$set('successMessage', null)" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd"
                                 d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                                 clip-rule="evenodd" />
@@ -31,12 +31,12 @@
     </div>
     @endif
 
-    <form  action="#" method="POST" class="w-1/2 my-12">
+    <form wire:submit.prevent="addComment" action="#" method="POST" class="w-1/2 my-12">
         @csrf
         <div class="flex">
             <img class="h-10 w-10 rounded-full" src="https://www.gravatar.com/avatar/?d=mp&f=y" alt="avatar">
             <div class="ml-4 flex-1">
-                <textarea name="comment" id="comment" rows="4" placeholder="Type your comment here..."
+                <textarea wire:model.defer="comment" name="comment" id="comment" rows="4" placeholder="Type your comment here..."
                     class="border rounded-md shadow w-full px-4 py-2"></textarea>
 
                 @error('comment')
