@@ -20,7 +20,7 @@ class CommentSection extends Component
     }
 
     public function addComment()
-    {
+    {   
         $this->validate();
         Comment::create([
             'post_id' => $this->post->id,
