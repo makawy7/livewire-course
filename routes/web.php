@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,13 @@ Route::get('/music', function () {
 Route::get('/users', function () {
     return view('users-table');
 });
+Route::get('/posts', function () {
+    return view('posts', [
+        'posts' => Post::all()
+    ]);
+});
+Route::get('/posts/{post}/show', function (Post $post) {
+    return view('posts.show', [
+        'post' => $post->load('comments')
+    ]);
+})->name('post.show');
