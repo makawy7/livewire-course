@@ -38,3 +38,9 @@ Route::get('/posts/{post}/show', function (Post $post) {
         'post' => $post->load('comments')
     ]);
 })->name('post.show');
+
+Route::get('/posts/{post}/edit', function (Post $post) {
+    return view('posts.edit', [
+        'post' => $post
+    ]);
+})->name('post.edit');
