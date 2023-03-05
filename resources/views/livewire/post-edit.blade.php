@@ -82,17 +82,26 @@
                     <label for="photo" class="block text-sm leading-5 font-medium text-gray-700 sm:mt-px sm:pt-2">
                         Cover Photo
                     </label>
-                    <div class="mt-2 sm:mt-0 sm:col-span-2">
+                    <div class="mt-2 sm:mt-0 sm:col-span-2" x-data="{ isUploading: false, progress: 0 }"
+                        x-on:livewire-upload-start="isUploading = true"
+                        x-on:livewire-upload-finish="isUploading = false"
+                        x-on:livewire-upload-error="isUploading = false"
+                        x-on:livewire-upload-progress="progress = $event.detail.progress">
                         <input wire:model="photo" type="file" name="photo">
                         @error('photo')
                             <p class="text-red-500 mt-1">{{ $message }}</p>
                         @enderror
 
+                        <!-- Progress Bar -->
+                        <div class="mt-4" x-show="isUploading">
+                            <progress max="100" x-bind:value="progress"></progress>
+                        </div>
+
 
                         @if ($photo)
                             <img src="{{ $photo->temporaryUrl() }}" alt="cover image">
                         @elseif ($post->image)
-                              <img src="{{ asset('storage/' . $post->image) }}" alt="cover image">
+                            <img src="{{ asset('storage/' . $post->image) }}" alt="cover image">
                         @endif
                     </div>
                 </div>
@@ -104,6 +113,14 @@
             <span class="ml-3 inline-flex rounded-md shadow-sm">
                 <button type="submit"
                     class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out disabled:opacity-50">
+                    <svg wire:loading wire:target="editPost" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                            stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                        </path>
+                    </svg>
                     Update
                 </button>
             </span>
