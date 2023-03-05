@@ -14,6 +14,7 @@ class PostEdit extends Component
     public $content;
     public $successMessage;
     public $photo;
+    public $photoTmpUrl;
 
     public $rules = [
         'title' => 'required',
@@ -29,6 +30,11 @@ class PostEdit extends Component
     public function updatedPhoto()
     {
         $this->validateOnly('photo');
+        try {
+            $this->photoTmpUrl = $this->photo->temporaryUrl();
+        } catch (\Exception $e) {
+            $this->photoTmpUrl = null;
+        }
     }
     public function render()
     {
