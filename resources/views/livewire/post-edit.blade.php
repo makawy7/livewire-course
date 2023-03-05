@@ -89,9 +89,11 @@
                         @enderror
 
 
-                        <div class="mt-4">
-
-                        </div>
+                        @if ($photo)
+                            <img src="{{ $photo->temporaryUrl() }}" alt="cover image">
+                        @elseif ($post->image)
+                            <img src="{{ $post->image }}" alt="cover image">
+                        @endif
                     </div>
                 </div>
             </div>
