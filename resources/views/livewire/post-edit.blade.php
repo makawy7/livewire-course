@@ -92,7 +92,7 @@
                         @if ($photo)
                             <img src="{{ $photo->temporaryUrl() }}" alt="cover image">
                         @elseif ($post->image)
-                            <img src="{{ $post->image }}" alt="cover image">
+                              <img src="{{ asset('storage/' . $post->image) }}" alt="cover image">
                         @endif
                     </div>
                 </div>
