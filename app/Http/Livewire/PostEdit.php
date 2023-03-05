@@ -41,7 +41,7 @@ class PostEdit extends Component
         $this->post->update([
             'title' => $this->title,
             'content' => $this->content,
-            'image' => $this->photo ? $this->photo->store('posts', 'public') : $this->post->image,
+            'photo' => $this->photo ? $this->photo->store('posts', 'public') : $this->post->photo,
         ]);
         $this->successMessage = 'Post has been updated successfully.';
     }

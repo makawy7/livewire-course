@@ -100,8 +100,8 @@
 
                         @if ($photo)
                             <img src="{{ $photo->temporaryUrl() }}" alt="cover image">
-                        @elseif ($post->image)
-                            <img src="{{ asset('storage/' . $post->image) }}" alt="cover image">
+                        @elseif ($post->photo)
+                            <img src="{{ asset('storage/' . $post->photo) }}" alt="cover image">
                         @endif
                     </div>
                 </div>
