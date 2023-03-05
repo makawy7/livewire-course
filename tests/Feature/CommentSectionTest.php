@@ -14,7 +14,7 @@ class CommentSectionTest extends TestCase
     use RefreshDatabase;
     private function addPost()
     {
-        return $post = Post::create(
+        return Post::create(
             [
                 'title' => 'some title',
                 'content' => 'some content',

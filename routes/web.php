@@ -25,6 +25,9 @@ Route::get('/music', function () {
 Route::get('/users', function () {
     return view('users-table');
 });
+Route::get('/polling', function () {
+    return view('polling');
+})->name('polling');
 Route::get('/posts', function () {
     return view('posts', [
         'posts' => Post::all()
