@@ -8,9 +8,10 @@
             Livewire.emit('tagRemoved', tag)
         }
     });
-    Livewire.on('added', tag => {
-        console.log('tag has been added: ' + tag);
-    })">
+    // Livewire.on('added', tag => {
+    //    console.log('tag has been added: ' + tag);
+    // })
+    ">
 
     </div>
 </div>

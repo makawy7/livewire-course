@@ -19,7 +19,7 @@ class TagsSection extends Component
     {
         Tag::create(['name' => $tag]);
         // emit from server and listen on the front-end
-        $this->emit('added', $tag);
+        // $this->emit('added', $tag);
     }
     public function tagRemoved($tag)
     {
